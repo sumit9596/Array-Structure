@@ -1,212 +1,197 @@
 #include<iostream>
-#include<conio.h>
+#include<conio.h>  // Used for getch() function (Windows-specific)
 #include<stdio.h>
 #include<string>
 using namespace std;
 
-class Array{
+class Array {
 	
-	int A[10];
+	int A[10];  // Array to store 10 integers
 	
 	public:
 		
-		void showMenu()
-		{
+		// Function to display the menu and allow user interaction
+		void showMenu() {
 			int n;	
 			
-			while(1)
-			{
-				system("cls");
-
-			
-				cout<<endl<<endl<<"Here is your menu baar : \n";
-			
-				cout<<endl<<"\t1. Show Element "<<endl<<"\t2. Input Array Element "<<endl<<"\t3. Show Maximum Element "<<endl<<"\t4. Show Minimum Element "<<endl<<"\t5. Sort "<<endl<<"\t6. Edit Element "<<endl<<"\t7. Sum of Element "<<endl<<"\t8. Average of Element "<<endl<<"\t9. Exit "<<endl;	
-				cout<<endl<<"\nEnter Menu Button : ";	
+			while(1) {
+				system("cls");  // Clear the screen (works on Windows)
 				
+				// Display menu options
+				cout << endl << endl << "Here is your menu bar : \n";
+				cout << endl << "\t1. Show Element " << endl
+				     << "\t2. Input Array Element " << endl
+				     << "\t3. Show Maximum Element " << endl
+				     << "\t4. Show Minimum Element " << endl
+				     << "\t5. Sort " << endl
+				     << "\t6. Edit Element " << endl
+				     << "\t7. Sum of Element " << endl
+				     << "\t8. Average of Element " << endl
+				     << "\t9. Exit " << endl;	
+				cout << endl << "\nEnter Menu Button : ";	
 				
-				cin>>n;
-				cout<<endl;
+				cin >> n;  // Take menu input from the user
+				cout << endl;
 				
-				switch(n)
-				{
-					case 1:
-					{
-						printElement();
+				// Handle menu option based on input
+				switch(n) {
+					case 1: {
+						printElement();  // Display array elements
 						break;
 					}	
 					
-					case 2:
-					{
-						inputArrayElement();
+					case 2: {
+						inputArrayElement();  // Input new elements into the array
 						break;
 					}
 					
-					case 3:
-					{
-						findMaxElement();
+					case 3: {
+						findMaxElement();  // Find and display the maximum element
 						break;	
 					}
 					
-					case 4:
-					{
-						findMinElement();
+					case 4: {
+						findMinElement();  // Find and display the minimum element
 						break;	
 					}
 					
-					case 5:
-					{
-						sort();
+					case 5: {
+						sort();  // Sort the array in ascending order
 						break;	
 					}	
 				
-					case 6:
-					{
-						editElement();
+					case 6: {
+						editElement();  // Edit a specific element in the array
 						break;	
 					}
 					
-					case 7:
-					{
-						sumOfElement();
+					case 7: {
+						sumOfElement();  // Calculate and display the sum of elements
 						break;	
 					}
 						
-					case 8:
-					{
-						averageOfElements();
+					case 8: {
+						averageOfElements();  // Calculate and display the average of elements
 						break;	
 					}	
 				
-					case 9:
-					{
-						cout<<"Thanks !";
-						return;
+					case 9: {
+						cout << "Thanks !";  // Exit message
+						return;  // Exit the loop and end the program
 						break;	
 					}	
 					default :
-						cout<<"Input are wrong ";	
-									
-					
+						cout << "Input is wrong";  // Handle invalid input
 				}
-				cout<<endl<<"\n\n\t\tPress any Key !\n\n";
-				getch();	
+				
+				cout << endl << "\n\n\t\tPress any Key !\n\n";
+				getch();  // Wait for user input (Windows-specific)
 			}
 		}
 		
-		void inputArrayElement()
-		{
-			cout<<endl<<"Enter your 10 element : ";
-			for(int i=0;i<10;i++)
-				cin>>A[i];
+		// Function to input 10 elements into the array
+		void inputArrayElement() {
+			cout << endl << "Enter your 10 elements: ";
+			for(int i = 0; i < 10; i++)
+				cin >> A[i];  // Store elements in the array
 			
-			printElement();
+			printElement();  // Display the array after input
 		}
 		
-		void findMaxElement()
-		{
-			int max = A[0];
+		// Function to find and display the maximum element in the array
+		void findMaxElement() {
+			int max = A[0];  // Assume first element is the maximum
 			
-			for(int i=1;i<10;i++)
-				if(max<A[i])
-					max=A[i];
+			for(int i = 1; i < 10; i++)
+				if(max < A[i])  // Compare each element
+					max = A[i];  // Update max if a larger element is found
 			
-			cout<<endl<<"Maximum Elemnts is : "<<max;		
+			cout << endl << "Maximum Element is: " << max;		
 		}
 		
-		void findMinElement()
-		{
-			int min = A[0];
+		// Function to find and display the minimum element in the array
+		void findMinElement() {
+			int min = A[0];  // Assume first element is the minimum
 			
-			for(int i=1;i<10;i++)
-				if(min>A[i])
-					min=A[i];
+			for(int i = 1; i < 10; i++)
+				if(min > A[i])  // Compare each element
+					min = A[i];  // Update min if a smaller element is found
 			
-			cout<<endl<<"Minimum Elemnts is : "<<min;		
+			cout << endl << "Minimum Element is: " << min;		
 		}
 		
-		void sort()
-		{
-			int temp;
-			int i,j;
+		// Function to sort the array in ascending order using bubble sort
+		void sort() {
+			int temp;  // Temporary variable for swapping
+			int i, j;
 			
-			for(i=0;i<10;i++)
-			{
-				for(j=i+1;j<10;j++)
-				{
-					if(A[i]>A[j])
-					{
-						temp=A[i];
-						A[i]=A[j];
-						A[j]=temp;
+			for(i = 0; i < 10; i++) {
+				for(j = i + 1; j < 10; j++) {
+					if(A[i] > A[j]) {  // If elements are out of order
+						temp = A[i];  // Swap the elements
+						A[i] = A[j];
+						A[j] = temp;
 					}
 				}
 			}
 			
-			printElement();
+			printElement();  // Display the sorted array
 		}
 		
-		void editElement()
-		{
-			int index , newData;
+		// Function to edit a specific element in the array
+		void editElement() {
+			int index, newData;
 			
-			printElement();
+			printElement();  // Display current elements
 			
-			cout<<endl<<"Enter Index : ";
-			cin>>index;
-			cout<<endl<<"Enter newData : ";
-			cin>>newData;
+			cout << endl << "Enter Index: ";
+			cin >> index;  // Get index from user
+			cout << endl << "Enter new data: ";
+			cin >> newData;  // Get new value
 			
-			if(index<10)
-			{
-				A[index]=newData;
+			// Validate the index
+			if(index >= 0 && index < 10) {
+				A[index] = newData;  // Update the array
+			} else {
+				cout << endl << "Your Index is wrong!";  // Handle invalid index
 			}
-			else
-				cout<<endl<<"Your Index are wrong !";
 			
-			printElement();	
-				
+			printElement();  // Display updated array
 		}
 		
-		void sumOfElement()
-		{
-			int sum=0;
-			for(int i=0;i<10;i++)
-				sum += A[i];
+		// Function to calculate and display the sum of elements in the array
+		void sumOfElement() {
+			int sum = 0;
+			for(int i = 0; i < 10; i++)
+				sum += A[i];  // Add each element to the sum
 			
-			cout<<endl<<"Sum of Elements : "<<sum;	
+			cout << endl << "Sum of Elements: " << sum;	
 		}
 		
-		void averageOfElements()
-		{
-			int sum=0;
-			float avg=0.0;
+		// Function to calculate and display the average of elements in the array
+		void averageOfElements() {
+			int sum = 0;
+			float avg = 0.0;
 			
-			for(int i=0;i<10;i++)
-			{
-				sum += A[i];
+			for(int i = 0; i < 10; i++) {
+				sum += A[i];  // Add each element to the sum
 			}
-			avg = sum / 10.0;
+			avg = sum / 10.0;  // Calculate average (floating-point division)
 			
-			cout<<endl<<"Average : "<<avg;
-			
+			cout << endl << "Average: " << avg;  // Display the average
 		}
 		
-		void printElement()
-		{
-			
-			cout<<"Here is your Elements : "<<endl<<endl;
-			for(int i=0;i<10;i++)
-				cout<<A[i]<<"\t";
+		// Function to display all elements in the array
+		void printElement() {
+			cout << "Here are your elements: " << endl << endl;
+			for(int i = 0; i < 10; i++)
+				cout << A[i] << "\t";  // Print each element
 		}
-				
 };
 
-
-int main()
-{
-	Array a1;
-	a1.showMenu();
-
+int main() {
+	Array a1;  // Create an object of the Array class
+	a1.showMenu();  // Start the menu interaction
+	
 	return 0;
 }
